@@ -1,0 +1,28 @@
+<app-header></app-header>
+<br/>
+<div class="listing">
+    <marquee style="color: #000; font-size:x-large; font-weight:500px;" behavior="alternate">
+        Now Playing Movies List
+    </marquee>
+</div>
+<div class="container">
+
+    <mat-toolbar color="primary">
+        <h2>Now Playing Movies </h2>
+    </mat-toolbar><br/>
+    <div class="row " *ngIf="!loader ">
+        <div class="col-md-3 listing__items " *ngFor="let movie of nowPlaying | slice:0:18 ">
+            <div class="listing-item-style ">
+                <img src="https://image.tmdb.org/t/p/w370_and_h556_bestv2/{{movie?.poster_path}} " [alt]="movie.title ? movie.title : movie.name ">
+                <img *ngIf="!movie?.poster_path " src="assets/images/default-movie.png " [alt]="movie.title ? movie.title : movie.name ">
+                <h2>{{ movie?.title }} -
+                    <span>{{movie?.release_date | date: 'yyyy'}}</span></h2>
+                <p class="rate "><i class="material-icons ">star</i><span>{{movie?.vote_average}}</span> /10 </p>
+            </div>
+        </div>
+        <div class="col-md-9"></div>
+    </div>
+
+</div>
+
+<app-footer></app-footer>
